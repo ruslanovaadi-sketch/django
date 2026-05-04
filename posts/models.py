@@ -19,16 +19,23 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     rate = models.IntegerField()
+    is_published = models.BooleanField(default=False)
     user = models.ImageField(null=True,blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+
+
+    def __str__(self):
+        return self.title
+
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
     p = models.DateTimeField()
 
     def str(self):
-        return self.title
+        return self.name
     
 
 

@@ -13,6 +13,11 @@ def post(request):
     return render(request,template_name="base httml",context={"post":post})
 
 
+def post_list(request):
+    posts = Post.objects.filter(is_published=True, rate__in=range(5, 10))
+    return render(request, 'post_list.html', {'posts': posts})
+
+
 
 
 # Create your views here.
