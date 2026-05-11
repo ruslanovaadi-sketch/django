@@ -21,4 +21,6 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("post/", views.post_list)
+    path('category/create/', views.create_category, name='create_category'),
 ]
+

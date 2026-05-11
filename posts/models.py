@@ -14,6 +14,13 @@ from django.db import models
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    p = models.DateTimeField()
+
+    def str(self):
+        return self.name
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -23,19 +30,13 @@ class Post(models.Model):
     user = models.ImageField(null=True,blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    category = models.ForeignKey(to=Category,on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):
         return self.title
 
 
-
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-    p = models.DateTimeField()
-
-    def str(self):
-        return self.name
     
 
 
