@@ -47,17 +47,17 @@ def create_post(request: HttpRequest):
         if form.is_valid():
             cleaned_data = form.cleaned_data
 
-            Post.objects.create(
-                title=cleaned_data["title"],
-                content=cleaned_data["content"],
-                rate=cleaned_data["rate"],
-                image=cleaned_data["image"],
-                category_id=cleaned_data["category"],
-            )
+         #   Post.objects.create(
+         #       title=cleaned_data["title"],
+         #       content=cleaned_data["content"],
+         #       rate=cleaned_data["rate"],
+         #       image=cleaned_data["image"],
+         #       category_id=cleaned_data["category"],
+         #   )
 
-            return redirect("posts")
+        #    return redirect("posts")
 
-        return render(request, "posts/create_post.html", context={"error": form.errors})
+       # return render(request, "posts/create_post.html", context={"error": form.errors})
 
     form = PostForm()
 
