@@ -22,5 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("post/", views.post_list)
     path('category/create/', views.create_category, name='create_category'),
-]   path('create/', create_post, name='create_post'),
+   path('create/', create_post, name='create_post'),
+    path('register/', register, name='register'),
+   path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+]
 

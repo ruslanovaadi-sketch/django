@@ -1,5 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render,CategoryForm
+from django.shortcuts import render, redirect
+from .forms import RegisterUserForm
 
 from posts.form import PostForm, TestForm
 from posts.models import Category, Post
@@ -47,17 +49,17 @@ def create_post(request: HttpRequest):
         if form.is_valid():
             cleaned_data = form.cleaned_data
 
-         #   Post.objects.create(
-         #       title=cleaned_data["title"],
-         #       content=cleaned_data["content"],
-         #       rate=cleaned_data["rate"],
-         #       image=cleaned_data["image"],
-         #       category_id=cleaned_data["category"],
-         #   )
+        Post.objects.create(
+                title=cleaned_data["title"],
+                content=cleaned_data["content"],
+                rate=cleaned_data["rate"],
+                 image=cleaned_data["image"],
+                 category_id=cleaned_data["category"],
+              
 
-        #    return redirect("posts")
+                 return redirect("posts")
 
-       # return render(request, "posts/create_post.html", context={"error": form.errors})
+        return render(request, "posts/create_post.html", context={"error": form.errors})
 
     form = PostForm()
 
@@ -110,6 +112,19 @@ def delete_post(request: HttpRequest, id):
         posts.delete()
 
         return redirect("posts")
+       
+    
+def register(request):
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RegisterUserForm()
+
+    return render(request, 'users/register.html', {'form': form})
 
 
 

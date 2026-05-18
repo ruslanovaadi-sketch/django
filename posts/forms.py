@@ -1,6 +1,10 @@
 # app/forms.py
 from django import forms,Charfield,Form,ModelForm,Integerfield,Imagefield
-from .models import Category,Post,Tag,
+from .models import Category,Post,Tag
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -42,4 +46,15 @@ class PostForm(forms.ModelForm):
             tag, created = Tag.objects.get_or_create(name=tag_name)
             post.tags.add(tag)
 
-        return post             
+        return post  
+
+
+    
+
+
+class RegisterUserForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")           
