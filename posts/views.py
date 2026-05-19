@@ -2,10 +2,11 @@ from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render,CategoryForm
 from django.shortcuts import render, redirect
 from .forms import RegisterUserForm
-
 from posts.form import PostForm, TestForm
 from posts.models import Category, Post
 from posts.posts import get_posts_filter_by_rate
+from django.shortcuts import render
+from .models import Post
 
 
 def home(request):
@@ -125,6 +126,27 @@ def register(request):
         form = RegisterUserForm()
 
     return render(request, 'users/register.html', {'form': form})
+
+
+def post_list(request):
+    posts = Post.objects.all()
+
+    return render(request, 'posts.html', {
+        'posts': posts
+    })
+
+class PostListView(View):
+
+    def get(self, request):
+        posts = Post.objects.all()
+
+        return render(request, 'posts.html', {
+            'posts': posts
+        })
+
+
+
+
 
 
 

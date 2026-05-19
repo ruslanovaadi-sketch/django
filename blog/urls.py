@@ -26,5 +26,6 @@ urlpatterns = [
     path('register/', register, name='register'),
    path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+   path('posts/', post_list),
 ]
 
